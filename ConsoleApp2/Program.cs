@@ -88,6 +88,8 @@ foreach (string word in words)
 
 Console.WriteLine($"{charCount} times");
 
+//Percentage added
+
 if (charCount > totalCharCount * 0.25)
 {
     Console.WriteLine($"The letter '{charToCount}' appears more than 25% of the total number of characters.");
@@ -96,6 +98,8 @@ else
 {
     Console.WriteLine($"The letter '{charToCount}' does not appear more than 25% of the total number of characters.");
 }
+
+
 //point 4
 //What do you think would be the best numeric datatype to store the total count of letters?
 //Why not just use BigInteger?
