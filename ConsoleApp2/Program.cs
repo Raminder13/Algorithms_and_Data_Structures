@@ -66,7 +66,7 @@ Console.WriteLine($"\nYou entered the character '{charToCount}'");
 // if your array of words has all lowercase letters and the user searches for an uppercase char like 'A'.
 
 int charCount = 0;
-int totalCharCount = 0;
+int total = 0;
 
 foreach (string word in words)
 {
@@ -80,7 +80,7 @@ foreach (string word in words)
             {
                 charCount++;
             }
-            totalCharCount++;
+            total++;
         }
 
     }
@@ -90,7 +90,7 @@ Console.WriteLine($"{charCount} times");
 
 //Percentage added
 
-if (charCount > totalCharCount * 0.25)
+if (charCount > total * 0.25)
 {
     Console.WriteLine($"The letter '{charToCount}' appears more than 25% of the total number of characters.");
 }
@@ -105,6 +105,5 @@ else
 //Why not just use BigInteger?
 
 //Answer-:
-// It totally depends on the expected range of counts.
 // If the count can exceed the maximum value of an int, you can use BigInteger
 // but if the count is within the range of int, you can use int to save memory.
