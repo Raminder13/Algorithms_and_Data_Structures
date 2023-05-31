@@ -44,9 +44,9 @@ while (true)
     ConsoleKeyInfo keyInfo = Console.ReadKey();
     charToCount = keyInfo.KeyChar;
 
-//Point-:2
-//Confirm the char entered is a letter (not a number or symbol),
-//and if it is not a letter, prompt the user to enter one again.You can use Char.IsLetter() for validation.
+    //Point-:2
+    //Confirm the char entered is a letter (not a number or symbol),
+    //and if it is not a letter, prompt the user to enter one again.You can use Char.IsLetter() for validation.
 
 
     if ((charToCount >= 'a' && charToCount <= 'z') || (charToCount >= 'A' && charToCount <= 'Z'))
@@ -66,6 +66,7 @@ Console.WriteLine($"\nYou entered the character '{charToCount}'");
 // if your array of words has all lowercase letters and the user searches for an uppercase char like 'A'.
 
 int charCount = 0;
+int totalCharCount = 0;
 
 foreach (string word in words)
 {
@@ -79,13 +80,22 @@ foreach (string word in words)
             {
                 charCount++;
             }
+            totalCharCount++;
         }
+
     }
 }
 
 Console.WriteLine($"{charCount} times");
 
-
+if (charCount > totalCharCount * 0.25)
+{
+    Console.WriteLine($"The letter '{charToCount}' appears more than 25% of the total number of characters.");
+}
+else
+{
+    Console.WriteLine($"The letter '{charToCount}' does not appear more than 25% of the total number of characters.");
+}
 //point 4
 //What do you think would be the best numeric datatype to store the total count of letters?
 //Why not just use BigInteger?
