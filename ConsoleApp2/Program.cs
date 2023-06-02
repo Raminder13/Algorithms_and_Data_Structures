@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Text;
 
-
-
-
-
 string inputString4 = "Tiptoe through the tulips";
 string longestWord = GetLongestUnbrokenWord(inputString4);
 Console.WriteLine("Longest Word: " + longestWord);
