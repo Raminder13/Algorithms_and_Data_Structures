@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Text;
 
-string inputString4 = "Tiptoe through the tulips";
-string longestWord = GetLongestUnbrokenWord(inputString4);
-Console.WriteLine("Longest Word: " + longestWord);
+
 
 //A program that produces an array of all of the characters that appear more than once in a string.
 //For example, the string “Programmatic Python” would result in the array ['p','r','o','a','m','t'].
@@ -74,8 +72,11 @@ string ReverseString(string input)
 //4th
 //A program that finds the longest unbroken word in a string and prints it
 //For example, the string "Tiptoe through the tulips" would print "through"
-//If there are multiple words tied for greatest length, print the last one
+//If there are multiple words tied for greatest length, print the last one.
 
+string inputString4 = "Tiptoe through the tulips";
+string longestWord = GetLongestUnbrokenWord(inputString4);
+Console.WriteLine("Longest Word: " + longestWord);
 string GetLongestUnbrokenWord(string input)
 {
     string[] words = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
