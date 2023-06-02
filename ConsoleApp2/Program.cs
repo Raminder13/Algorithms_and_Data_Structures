@@ -1,130 +1,78 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Text;
 
-class Program
+string inputString = "Programmatic Python";
+char[] repeatedChars = GetRepeatedCharacters(inputString);
+Console.WriteLine("Repeated Characters: " + string.Join(", ", repeatedChars));
+
+string inputString2 = "To be or not to be";
+string[] uniqueWords = GetUniqueWords(inputString2);
+Console.WriteLine("Unique Words: " + string.Join(", ", uniqueWords));
+
+string inputString3 = "Reverse this string";
+string reversedString = ReverseString(inputString3);
+Console.WriteLine("Reversed String: " + reversedString);
+
+string inputString4 = "Tiptoe through the tulips";
+string longestWord = GetLongestUnbrokenWord(inputString4);
+Console.WriteLine("Longest Word: " + longestWord);
+
+char[] GetRepeatedCharacters(string input)
 {
-    static void printDuplicates(string input)
-    {
-        string n = input;
-        var duplicateChars = new List<char>();
-        int duplicateCounter = 0;
+    List<char> repeatedChars = new List<char>();
+    HashSet<char> uniqueChars = new HashSet<char>();
+    HashSet<char> duplicateChars = new HashSet<char>();
 
-        foreach (char item in n)
+    foreach (char c in input)
+    {
+        if (uniqueChars.Contains(c))
         {
-            int count = 0;
-            foreach (char chars in n)
+            if (!duplicateChars.Contains(c))
             {
-                if (item == chars)
-                {
-                    count++;
-                }
-            }
-            if (count > 1 && !duplicateChars.Contains(item))
-            {
-                duplicateChars.Add(item);
-                duplicateCounter++;
+                repeatedChars.Add(c);
+                duplicateChars.Add(c);
             }
         }
-
-        if (duplicateCounter > 0)
+        else
         {
-            Console.WriteLine("[{0}]", string.Join(", ", duplicateChars).ToLower());
-            return;
+            uniqueChars.Add(c);
         }
-        Console.WriteLine("Provided string contains no duplicate characters");
     }
 
-    static void printUniqueWords(string input)
+    return repeatedChars.ToArray();
+}
+
+string[] GetUniqueWords(string input)
+{
+    string[] words = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+    HashSet<string> uniqueWords = new HashSet<string>(words, StringComparer.OrdinalIgnoreCase);
+
+    return uniqueWords.ToArray();
+}
+
+string ReverseString(string input)
+{
+    StringBuilder reversed = new StringBuilder();
+
+    for (int i = input.Length - 1; i >= 0; i--)
     {
-        // largely the same as printDuplicates()
-        // just make an array of strings and
-        // check if it's not equal to each other
-        string str = input;
-        Regex reg = new Regex("[*'\",_&#^@]");
-        str = reg.Replace(str, string.Empty);
+        reversed.Append(input[i]);
+    }
 
+    return reversed.ToString();
+}
 
-        String[] strings = str.Split(" ");
-        var uniqueWords = new List<string>();
-        int uniqueCounter = 0;
+string GetLongestUnbrokenWord(string input)
+{
+    string[] words = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+    string longestWord = "";
 
-        foreach (string s in strings)
+    foreach (string word in words)
+    {
+        if (word.Length > longestWord.Length)
         {
-            int count = 0;
-
-            foreach (string words in strings)
-            {
-                if (s != words)
-                {
-                    count++;
-                }
-            }
-
-            if (count > 1 && !uniqueWords.Contains(s))
-            {
-                uniqueWords.Add(s);
-                uniqueCounter++;
-            }
+            longestWord = word;
         }
-
-        Console.WriteLine("Total number of unique words: " + uniqueCounter);
-        Console.WriteLine("[{0}]", string.Join(", ", uniqueWords));
     }
 
-    static void reverseString(string input)
-    {
-        char[] array = input.ToCharArray();
-        Array.Reverse(array);
-        Console.WriteLine(array);
-    }
-
-    static void largestWord(string input)
-    {
-        // split input string into array of strings
-        string str = input;
-        String[] strings = str.Split(" ");
-        int count = 0;
-        string word = "";
-
-        // if the length of the current word is greater than
-        // the previous word .. then current word = biggest and count
-        // is updated to the length of the current word
-        foreach (string item in strings)
-        {
-            if (item.Length > count)
-            {
-                word = item;
-                count = item.Length;
-            }
-        }
-
-        Console.WriteLine("The biggest word is: " + word + ", with a length of: " + count);
-    }
-
-    static void Main(string[] args)
-    {
-
-        // duplicate letters
-        Console.WriteLine("Input a string to check if there are duplicates, and print all duplicates");
-        string repeatCharactersString = Console.ReadLine();
-        printDuplicates(repeatCharactersString);
-
-
-        // all unique words
-        Console.WriteLine();
-        Console.WriteLine("Input a set of words to check the total amount of unique words");
-        string uniqueWordString = Console.ReadLine().ToLower();
-        printUniqueWords(uniqueWordString);
-
-
-        // reverse string
-        Console.WriteLine();
-        Console.WriteLine("Input a string to reverse");
-        reverseString(Console.ReadLine());
-
-
-        // longest word
-        Console.WriteLine();
-        Console.WriteLine("Input a string of words to find the longest word");
-        largestWord(Console.ReadLine());
-    }
+    return longestWord;
 }
