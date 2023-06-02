@@ -1,36 +1,42 @@
 ﻿using System;
 using System.Text;
 
-
-
 //A program that produces an array of all of the characters that appear more than once in a string.
 //For example, the string “Programmatic Python” would result in the array ['p','r','o','a','m','t'].
 
-string inputString = "Programmatic Python";
-char[] repeatedChars = GetRepeatedCharacters(inputString);
+string i1 = "Programmatic Python";
+char[] repeatedChars = GetRepeatedCharacters(i1);
 Console.WriteLine("Repeated Characters: " + string.Join(", ", repeatedChars));
-char[] GetRepeatedCharacters(string input)
+static char[] GetRepeatedCharacters(string input)
 {
     List<char> repeatedChars = new List<char>();
-    HashSet<char> uniqueChars = new HashSet<char>();
-    HashSet<char> duplicateChars = new HashSet<char>();
 
-    foreach (char c in input)
+    // Iterate in the input string
+    for (int i = 0; i < input.Length; i++)
     {
-        if (uniqueChars.Contains(c))
+        char c = input[i];
+        bool isDuplicate = false;
+
+        for (int j = i + 1; j < input.Length; j++)
         {
-            if (!duplicateChars.Contains(c))
+            // If a duplicate character is found and it's not already added
+            if (c == input[j] && !repeatedChars.Contains(c))
             {
                 repeatedChars.Add(c);
-                duplicateChars.Add(c);
+                isDuplicate = true;
+                // Break to avoid adding the chars too many times
+                break;
             }
         }
-        else
+
+        // If the current character is a duplicate, skip to the next iteration
+        if (isDuplicate)
         {
-            uniqueChars.Add(c);
+            continue;
         }
     }
 
+    // Convert the repeatedChars list to an array and return it
     return repeatedChars.ToArray();
 }
 
@@ -39,23 +45,46 @@ char[] GetRepeatedCharacters(string input)
 //A program returns an array of strings that are unique words found in the argument.
 //For example, the string “To be or not to be” returns ["to","be","or","not"].
 
-string inputString2 = "To be or not to be";
-string[] uniqueWords = GetUniqueWords(inputString2);
+string i2 = "To be or not to be";
+string[] uniqueWords = GetUniqueWords(i2);
 Console.WriteLine("Unique Words: " + string.Join(", ", uniqueWords));
+
 string[] GetUniqueWords(string input)
 {
+    // Split into an array of words
     string[] words = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-    HashSet<string> uniqueWords = new HashSet<string>(words, StringComparer.OrdinalIgnoreCase);
+    List<string> uniqueWords = new List<string>();
 
+    for (int i = 0; i < words.Length; i++)
+    {
+        string word = words[i];
+        bool isDuplicate = false;
+
+        for (int j = 0; j < uniqueWords.Count; j++)
+        {
+            if (string.Equals(word, uniqueWords[j], StringComparison.OrdinalIgnoreCase))
+            {
+                isDuplicate = true;
+                break;
+            }
+        }
+
+        // If the word is not a duplicate add it
+        if (!isDuplicate)
+        {
+            uniqueWords.Add(word);
+        }
+    }
     return uniqueWords.ToArray();
 }
+
 
 
 //3rd
 //A program that reverses a provided string
 
-string inputString3 = "Reverse this string";
-string reversedString = ReverseString(inputString3);
+string i3 = "Reverse this string";
+string reversedString = ReverseString(i3);
 Console.WriteLine("Reversed String: " + reversedString);
 string ReverseString(string input)
 {
@@ -74,16 +103,19 @@ string ReverseString(string input)
 //For example, the string "Tiptoe through the tulips" would print "through"
 //If there are multiple words tied for greatest length, print the last one.
 
-string inputString4 = "Tiptoe through the tulips";
-string longestWord = GetLongestUnbrokenWord(inputString4);
+string i4 = "Tiptoe through the tulips";
+string longestWord = GetLongestUnbrokenWord(i4);
 Console.WriteLine("Longest Word: " + longestWord);
+
 string GetLongestUnbrokenWord(string input)
 {
     string[] words = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
     string longestWord = "";
 
-    foreach (string word in words)
+    for (int i = 0; i < words.Length; i++)
     {
+        string word = words[i];
+
         if (word.Length > longestWord.Length)
         {
             longestWord = word;
@@ -92,6 +124,8 @@ string GetLongestUnbrokenWord(string input)
 
     return longestWord;
 }
+
+
 
 // StringBuilder provides faster and more memory-efficient string manipulation by allowing changes
 // to be made without creating new string instances each time.
