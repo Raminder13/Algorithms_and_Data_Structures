@@ -11,7 +11,6 @@ char[] GetRepeatedCharacters(string input)
 {
     List<char> repeatedChars = new List<char>();
 
-    // Iterate in the input string
     for (int i = 0; i < input.Length; i++)
     {
         char c = input[i];
@@ -28,8 +27,6 @@ char[] GetRepeatedCharacters(string input)
                 break;
             }
         }
-
-        // If the current character is a duplicate, skip to the next iteration
         if (isDuplicate)
         {
             continue;
