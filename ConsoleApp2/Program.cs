@@ -7,7 +7,7 @@ using System.Text;
 string i1 = "Programmatic Python";
 char[] repeatedChars = GetRepeatedCharacters(i1);
 Console.WriteLine("Repeated Characters: " + string.Join(", ", repeatedChars));
-static char[] GetRepeatedCharacters(string input)
+char[] GetRepeatedCharacters(string input)
 {
     List<char> repeatedChars = new List<char>();
 
