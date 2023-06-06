@@ -9,7 +9,7 @@
 List<int> nums = new List<int> { 1, 2, 3, 4, 7, 9, 2, 4 };
 List<int> duplicates = FindDuplicates(nums);
 
-Console.WriteLine(string.Join(", ", duplicates));
+Console.WriteLine("Elements that appeared twice : " + string.Join(", ", duplicates));
 
 List<int> FindDuplicates(List<int> nums)
 {
@@ -44,7 +44,7 @@ int[] nums1 = { 1, 2, 3, 4, 5 };
 int[] nums2 = { 2, 5, 7, 9, 13 };
 int[] merged = MergeSortedArrays(nums1, nums2);
 
-Console.WriteLine(string.Join(", ", merged));
+Console.WriteLine("MergeSortedArray : " + string.Join(", ", merged));
 int[] MergeSortedArrays(int[] nums1, int[] nums2)
 {
     int n1 = nums1.Length; // length of the first array
@@ -90,7 +90,7 @@ int[] MergeSortedArrays(int[] nums1, int[] nums2)
 
 int num = 3415;
 int reversedNum = ReverseInteger(num);
-Console.WriteLine(reversedNum);
+Console.WriteLine("ReverseInteger : " + reversedNum);
 int ReverseInteger(int num)
 {
     string numString = num.ToString();
