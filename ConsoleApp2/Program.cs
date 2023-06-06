@@ -4,38 +4,30 @@ using System.Text;
 //A program that produces an array of all of the characters that appear more than once in a string.
 //For example, the string “Programmatic Python” would result in the array ['p','r','o','a','m','t'].
 
-string i1 = "Programmatic Python";
-char[] repeatedChars = GetRepeatedCharacters(i1);
-Console.WriteLine("Repeated Characters: " + string.Join(", ", repeatedChars));
-char[] GetRepeatedCharacters(string input)
+string inputString = "Programmatic Python";
+string inputStringLower = inputString.ToLower();
+List<char> duplicateChars = new List<char>();
+
+foreach (char c in inputStringLower)
 {
-    List<char> repeatedChars = new List<char>();
-
-    for (int i = 0; i < input.Length; i++)
+    int count = 0;
+    for (int i = 0; i < inputStringLower.Length; i++)
     {
-        char c = input[i];
-        bool isDuplicate = false;
-
-        for (int j = i + 1; j < input.Length; j++)
+        if (c == inputStringLower[i])
         {
-            // If a duplicate character is found and it's not already added
-            if (c == input[j] && !repeatedChars.Contains(c))
-            {
-                repeatedChars.Add(c);
-                isDuplicate = true;
-                // Break to avoid adding the chars too many times
-                break;
-            }
+            count++;
         }
-        if (isDuplicate)
+        if (count > 1 && !duplicateChars.Contains(c))
         {
-            continue;
+            duplicateChars.Add(c);
+            break;
         }
     }
-
-    // Convert the repeatedChars list to an array and return it
-    return repeatedChars.ToArray();
 }
+
+char[] duplicateCharsArray = duplicateChars.ToArray();
+Console.WriteLine("Duplicate characters in the string: " + string.Join(", ", duplicateCharsArray));
+
 
 //2nd
 //    array ['p','r','o','a','m','t'].
