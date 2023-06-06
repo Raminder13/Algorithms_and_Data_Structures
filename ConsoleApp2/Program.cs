@@ -11,7 +11,6 @@ List<int> duplicates = FindDuplicates(nums);
 
 Console.WriteLine(string.Join(", ", duplicates));
 
-// Function
 List<int> FindDuplicates(List<int> nums)
 {
     HashSet<int> seen = new HashSet<int>(); // HashSet 4 unique elements
@@ -21,11 +20,11 @@ List<int> FindDuplicates(List<int> nums)
     {
         if (seen.Contains(num))
         {
-            duplicates.Add(num); // If the els is already in the HashSet then it's a duplicate
+            duplicates.Add(num); // if the els is already in the HashSet then it's a duplicate
         }
         else
         {
-            seen.Add(num); // If the element is not in the HashSet add it to the HashSet
+            seen.Add(num); // if the els is not in the HashSet add it to the HashSet
         }
     }
 
@@ -46,26 +45,24 @@ int[] nums2 = { 2, 5, 7, 9, 13 };
 int[] merged = MergeSortedArrays(nums1, nums2);
 
 Console.WriteLine(string.Join(", ", merged));
-
-// Function
 int[] MergeSortedArrays(int[] nums1, int[] nums2)
 {
-    int n1 = nums1.Length; // Length of the first array
+    int n1 = nums1.Length; // length of the first array
     int n2 = nums2.Length; // second
-    int[] merged = new int[n1 + n2]; // Array 4 merged result
+    int[] merged = new int[n1 + n2]; // array 4 merged result
     int i = 0, j = 0, k = 0;
 
     while (i < n1 && j < n2)
     {
         if (nums1[i] <= nums2[j])
         {
-            merged[k] = nums1[i]; 
+            merged[k] = nums1[i];
             i++;
         }
         else
         {
-            merged[k] = nums2[j]; 
-            j++; 
+            merged[k] = nums2[j];
+            j++;
         }
         k++;
     }
@@ -83,7 +80,6 @@ int[] MergeSortedArrays(int[] nums1, int[] nums2)
         j++;
         k++;
     }
-
     return merged;
 }
 
@@ -97,15 +93,17 @@ int reversedNum = ReverseInteger(num);
 Console.WriteLine(reversedNum);
 int ReverseInteger(int num)
 {
-    int reversed = 0;
-    while (num != 0)
-    {
-        int digit = num % 10;
-        reversed = reversed * 10 + digit;
-        num /= 10;
-    }
+    string numString = num.ToString();
+    char[] charArray = numString.ToCharArray();
+    // reverse the char array
+    Array.Reverse(charArray);
+
+    // create new string from reversed one
+    string reversedString = new string(charArray);
+    int reversed = int.Parse(reversedString);
     return reversed;
 }
+
 
 
 
