@@ -6,7 +6,7 @@
    example: {1, 2, 3, 4, 7, 9, 2, 4} returns '{2, 4}
 */
 
-List<int> nums = new List<int> { 1, 2, 3, 4, 7, 9, 2, 4 };
+List<int> nums = new List<int> { 22, 33, 4, 5, 8, 22, 4, 33 };
 List<int> duplicates = FindDuplicates(nums);
 
 Console.WriteLine("Elements that appeared twice : " + string.Join(", ", duplicates));
@@ -40,8 +40,8 @@ List<int> FindDuplicates(List<int> nums)
         returns {1, 2, 2, 3, 4, 5, 5, 7, 9, 13}
 */
 
-int[] nums1 = { 1, 2, 3, 4, 5 };
-int[] nums2 = { 2, 5, 7, 9, 13 };
+int[] nums1 = { 2, 56, 4, 11, 23 };
+int[] nums2 = { 3, 10, 11, 43, 1 };
 int[] merged = MergeSortedArrays(nums1, nums2);
 
 Console.WriteLine("MergeSortedArray : " + string.Join(", ", merged));
@@ -88,7 +88,7 @@ int[] MergeSortedArrays(int[] nums1, int[] nums2)
  * e. g. input is 3415, output is 5143. What is the time complexity of your solution?
 */
 
-int num = 3415;
+int num = 1319;
 int reversedNum = ReverseInteger(num);
 Console.WriteLine("ReverseInteger : " + reversedNum);
 int ReverseInteger(int num)
